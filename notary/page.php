@@ -134,6 +134,7 @@
 
 	<?php if( get_field('actions', 'option') ): ?>
 		<?php if( have_rows('actions') ): ?>
+			<?php $num = 1; ?>
 			<section class="actions" id="actions">
 				<div class="actions__container container">
 
@@ -151,7 +152,7 @@
 									<div class="actions__slider_desc">
 										<h4 class="h4"><?php echo $name; ?></h4>
 										<?php echo $text; ?>
-										<a href="#" class="actions__slider_more">Перечень необходимых документов <img src="<?php echo get_template_directory_uri(); ?>/assets/img/more.svg " alt=""></a>
+										<a href="#" class="modal__edits--<?php echo $num++ ?> actions__slider_more">Перечень необходимых документов <img src="<?php echo get_template_directory_uri(); ?>/assets/img/more.svg " alt=""></a>
 									</div>
 								</div>
 							<?php endwhile; ?>
@@ -184,124 +185,15 @@
 	<?php endif; ?>
 
 	<?php if( get_field('tariffs', 'option') ): ?>
-		<section class="tariffs" id="tariffs">
-			<div class="tariffs__container container">
-				<h2 class="h2">Тарифы:</h2>
-				<div class="tariffs__grid">
-					<p class="tariffs__header">№</p>
-					<p class="tariffs__header">Вид нотариального действия</p>
-					<p class="tariffs__header">Тариф</p>
-					<p class="tariffs__header">Размер платы за оказание услуг правового и технического характера</p>
-
-					<p class="tariffs__item">1</p>
-					<p class="tariffs__item">
-						Удостоверение доверенностей на совершение сделок (сделки), требующих (требующей) нотариальной формы в 
-						соответствии с законодательством Российской Федерации (кроме доверенностей, указанных в п. 4 настоящих 
-						тарифов)
-					</p>
-					<p class="tariffs__item">200 руб.</p>
-					<p class="tariffs__item">
-						от физических лиц 1800 руб.
-						<br>
-						от юридических лиц 2700 руб.
-					</p>
-
-					<p class="tariffs__item">2</p>
-					<p class="tariffs__item">
-						Удостоверение прочих доверенностей, требующих нотариальной формы в соответствии с законодательством 
-						Российской Федерации
-					</p>
-					<p class="tariffs__item">200 руб.</p>
-					<p class="tariffs__item">
-						от физических лиц 1800 руб.
-						<br>
-						от юридических лиц 2700 руб.
-					</p>
-
-					<p class="tariffs__item">3</p>
-					<p class="tariffs__item">
-						Удостоверение доверенностей, выдаваемых в порядке передоверия, в случаях, если такое удостоверение 
-						обязательно в соответствии с законодательством Российской Федерации
-					</p>
-					<p class="tariffs__item">200 руб.</p>
-					<p class="tariffs__item">
-						от физических лиц 1800 руб.
-						<br>
-						от юридических лиц 2700 руб.
-					</p>
-
-					<p class="tariffs__item">4</p>
-					<p class="tariffs__item">
-						Удостоверение доверенностей на право пользования и (или) распоряжения имуществом, за исключением 
-						автотранспортных средств:
-						<br><br>
-						- детям, в том числе усыновленным, супругу, родителям, полнородным братьям и сестрам;
-						<br>
-						- другим физическим лицам
-					</p>
-					<p class="tariffs__item">200 руб.</p>
-					<p class="tariffs__item">
-						от физических лиц 1800 руб.
-						<br>
-						от юридических лиц 2700 руб.
-					</p>
-
-					<p class="tariffs__item">5</p>
-					<p class="tariffs__item">
-						Удостоверение доверенностей, нотариальная форма которых не обязательна в соответствии 
-						с законодательством Российской Федерации (в том числе доверенности на право пользования 
-						или распоряжения автотранспортными средствами)
-					</p>
-					<p class="tariffs__item">200 руб.</p>
-					<p class="tariffs__item">
-						от физических лиц 1800 руб.
-						<br>
-						от юридических лиц 2700 руб.
-					</p>
-
-					<p class="tariffs__item">5.1</p>
-					<p class="tariffs__item">
-						Удостоверение доверенности на получение пенсии и социальных выплат, связанных с инвалидностью
-					</p>
-					<p class="tariffs__item">Освобождено</p>
-					<p class="tariffs__item">
-						1350 руб.
-					</p>
-
-					<p class="tariffs__item">5.2</p>
-					<p class="tariffs__item">
-						Удостоверение распоряжения об отмене доверенности
-					</p>
-					<p class="tariffs__item">200 руб.</p>
-					<p class="tariffs__item">
-						1200 руб.
-					</p>
-
-					<p class="tariffs__item">5.2</p>
-					<p class="tariffs__item">
-						Удостоверение договоров об отчуждении недвижимого имущества, подлежащих 
-						обязательному нотариальному удостоверению
-					</p>
-					<p class="tariffs__item">0,5 процента суммы договора, но не менее 300 рублей и не более 20000 рублей</p>
-					<p class="tariffs__item">
-						6100 руб.
-					</p>
+		<?php if( get_field('tariffs') ): ?>
+			<section class="tariffs" id="tariffs">
+				<div class="tariffs__container container">
+					<h2 class="h2">Тарифы:</h2>
+					<?php the_field('tariffs'); ?>
 
 				</div>
-			</div>
-
-			<div class="container">
-				<div class="tariffs__pagination">
-					<span>1</span>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-					<a href="#">5</a>
-					<a href="#" class="tariffs__pagination_prev"></a>
-					<a href="#" class="tariffs__pagination_next"></a>
-				</div>
-			</div>
-		</section>
+			</section>
+		<?php endif; ?>
 	<?php endif; ?>
 
 	<?php if( get_field('contacts', 'option') ): ?>
@@ -322,7 +214,7 @@
 						</p>
 						<p class="contacts__info_mail">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/img/mail.svg" alt="">
-							<a href="mailto:<?php the_field('mail', 'option'); ?>"><?php the_field('mail', 'option'); ?></a>
+							<a href="mailto:<?php the_field('email', 'option'); ?>"><?php the_field('email', 'option'); ?></a>
 						</p>
 						<p class="contacts__info_time">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/img/time.svg" alt="">
@@ -445,6 +337,29 @@
 			</section>
 		<?php endif; ?>
 	<?php endif; ?>
+
+	<?php if( get_field('actions', 'option') ): ?>
+		<?php if( have_rows('actions') ): ?>
+		<?php $num = 1; ?>
+			<?php while( have_rows('actions') ): the_row(); 
+					$modal = get_sub_field('modal');
+				?>
+					<div class="modal" id="modal__edits--<?php echo $num++ ?>">
+						<div class="modal__form">
+
+							<button class="close modal__close" type="button">
+								<span></span>
+								<span></span>
+							</button>
+
+								<?php echo $modal; ?>
+
+					</div>
+				</div>
+			<?php endwhile; ?>
+		<?php endif; ?>
+	<?php endif; ?>
+
 
 <?php
 	get_footer();
