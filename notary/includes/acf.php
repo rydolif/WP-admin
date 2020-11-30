@@ -251,7 +251,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				),
 				array(
 					'key' => 'field_5faeefb3eaff3',
-					'label' => 'Фиксованое меню',
+					'label' => 'Фиксированное меню',
 					'name' => 'header__fixed',
 					'type' => 'true_false',
 					'instructions' => '',
