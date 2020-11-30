@@ -14,14 +14,26 @@
 			</a>
 
 			<nav class="header__nav">
+
+				<ul>
+					<li><a href="#hero">Главная</a></li>
+					<?php if( get_field('info', 'option') ): ?><li><a href="#info">Объявление</a></li><?php endif; ?>
+					<?php if( get_field('news', 'option') ): ?><li><a href="#news">Новости</a></li><?php endif; ?>
+					<?php if( get_field('actions', 'option') ): ?><li><a href="#actions">Нотариальные действия</a></li><?php endif; ?>
+					<?php if( get_field('tariffs', 'option') ): ?><li><a href="#tariffs">Тарифы</a></li><?php endif; ?>
+					<?php if( get_field('contacts', 'option') ): ?><li><a href="#contacts">Контакты</a></li><?php endif; ?>
+					<?php if( get_field('document', 'option') ): ?><li><a href="#document">Отправить документы</a></li><?php endif; ?>
+					<?php if( get_field('registers', 'option') ): ?>	<li><a href="#registers">Публичные реестры</a></li><?php endif; ?>
+				</ul>
+
 				<?php 
-					wp_nav_menu( array(
-						'menu'=>'menu',
-						'menu_class'=>'list',
-						'theme_location'=>'menu',
-					) );
+					// wp_nav_menu( array(
+					// 	'menu'=>'menu',
+					// 	'menu_class'=>'list',
+					// 	'theme_location'=>'menu',
+					// ) );
 				?>
-			</nav>
+			</nav> 
 
 			<button class="hamburger" type="button">
 				<span class="hamburger__box">
@@ -36,16 +48,20 @@
 		<div class="container">
 
 			<div class="hero__description">
-				<p class="hero__top-text"><?php the_field('hero_text'); ?></p>
-				<h1 class="h1"><?php the_field('hero_title'); ?></h1>
+				<p class="hero__top-text"><?php the_field('hero_text', 'option'); ?></p>
+				<h1 class="h1"><?php the_field('hero_title', 'option'); ?></h1>
 				<p class="hero__subtitle">
-					<?php the_field('hero_subtitle'); ?>
+					<?php the_field('hero_subtitle', 'option'); ?>
 				</p>
 				<div class="hero__btn">
+				<?php if( get_field('document', 'option') ): ?>
 					<a href="#document" class="btn">Записаться</a>
+				<?php endif; ?>
+				<?php if( get_field('info', 'option') ): ?>
 					<a href="#info" class="hero__down">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero__down.svg" alt="">
 					</a>
+				<?php endif; ?>
 				</div>
 			</div>
 
@@ -53,8 +69,8 @@
 	</section>
 
 	<?php if( get_field('info', 'option') ): ?>
-		<?php if( get_field('info_desc') ): ?>
-			<?php if( get_field('info_img') ): ?>
+		<?php if( get_field('info_desc', 'option') ): ?>
+			<?php if( get_field('info_img', 'option') ): ?>
 				<section class="info" id="info">
 					<div class="container">
 
@@ -62,10 +78,10 @@
 
 						<div class="info__container">
 							<div class="info__description">
-								<?php the_field('info_desc'); ?>
+								<?php the_field('info_desc', 'option'); ?>
 							</div>
 							<div class="info__img">
-								<img src="<?php the_field('info_img'); ?>" alt="">
+								<img src="<?php the_field('info_img', 'option'); ?>" alt="">
 							</div>
 						</div>
 
@@ -185,12 +201,11 @@
 	<?php endif; ?>
 
 	<?php if( get_field('tariffs', 'option') ): ?>
-		<?php if( get_field('tariffs') ): ?>
+		<?php if( get_field('tariffs_table') ): ?>
 			<section class="tariffs" id="tariffs">
 				<div class="tariffs__container container">
 					<h2 class="h2">Тарифы:</h2>
-					<?php the_field('tariffs'); ?>
-
+					<?php the_field('tariffs_table'); ?>
 				</div>
 			</section>
 		<?php endif; ?>
@@ -231,7 +246,7 @@
 	<?php endif; ?>
 
 	<?php if( get_field('document', 'option') ): ?>
-		<?php if( get_field('document') ): ?>
+		<?php if( get_field('document_wrap', 'option') ): ?>
 			<section class="document" id="document">
 				<div class="container">
 
@@ -248,42 +263,8 @@
 					</p>
 					
 					<div class="document__form form">
-						<?php the_field('document'); ?>
+						<?php the_field('document_wrap', 'option'); ?>
 					</div>
-					<div class="formPreview"></div>
-
-					<!--  <form action="#" class="document__form form">
-						<div class="document__form_line">
-							<p><input type="text" name="name" placeholder="Ваше ФИО" class="form__input _req"></p>
-							<p><input type="tel" name="phone" placeholder="Ваш номер телефона" class="form__input _req"></p>
-							<p><input type="email" name="mail" placeholder="Ваш Email" class="form__input _req"></p>
-						</div>
-						<div class="document__form_textarea">
-							<textarea name="message" class="form__textarea" placeholder="Введите сообщение..."></textarea>
-						</div>
-						<div class="document__form_file form__item">
-							<div class="form__file">
-								<div class="form__file_item">
-									<input accept=".jpg, .png, .gif, .ico" type="file" name="image" class="formImage form__file_input">
-									<label class="formLebel">Выберите файл</label>
-								</div>
-								<div id="formPreview3" class="formPreview form__file_preview"></div>
-							</div>
-						</div>
-						<div class="form__item">
-							<div class="form__checkbox">
-								<input id="formAgreement3" checked type="checkbox" name="agreement" class="form__checkbox_input _req">
-								<label for="formAgreement3" class="form__checkbox_label">
-									<span>Я согласен на обработку <a href="#">персональных данных</a></span>
-								</label>
-							</div>
-						</div>
-
-						<div class="form__btn">
-							<button type="submit" class="btn form__btn_button" name="submit">Отправить</button>
-						</div>
-					</form>-->
-
 				</div>
 			</section>
 		<?php endif; ?>

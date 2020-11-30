@@ -4,7 +4,7 @@
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 	<section class="hero hero--page" id="hero">
-		<a href="<?php echo get_home_url(); ?>" class="btn">Вернутся на главную</a>
+		<a href="<?php echo get_home_url(); ?>" class="btn">Вернуться на главную</a>
 	</section>
 
 	<section class="info" id="info">
