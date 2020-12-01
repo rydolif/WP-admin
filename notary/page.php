@@ -17,13 +17,39 @@
 
 				<ul>
 					<li><a href="#hero">Главная</a></li>
-					<?php if( get_field('info', 'option') ): ?><li><a href="#info">Объявление</a></li><?php endif; ?>
-					<?php if( get_field('news', 'option') ): ?><li><a href="#news">Новости</a></li><?php endif; ?>
-					<?php if( get_field('actions', 'option') ): ?><li><a href="#actions">Нотариальные действия</a></li><?php endif; ?>
-					<?php if( get_field('tariffs', 'option') ): ?><li><a href="#tariffs">Тарифы</a></li><?php endif; ?>
-					<?php if( get_field('contacts', 'option') ): ?><li><a href="#contacts">Контакты</a></li><?php endif; ?>
-					<?php if( get_field('document', 'option') ): ?><li><a href="#document">Отправить документы</a></li><?php endif; ?>
-					<?php if( get_field('registers', 'option') ): ?>	<li><a href="#registers">Публичные реестры</a></li><?php endif; ?>
+					<?php if( get_field('info', 'option') ): ?>
+						<?php if( get_field('info_desc', 'option') ): ?>
+							<?php if( get_field('info_img', 'option') ): ?>
+								<li><a href="#info">Объявление</a></li>
+							<?php endif; ?>
+						<?php endif; ?>
+					<?php endif; ?>
+					<?php if( get_field('news', 'option') ): ?>
+						<li><a href="#news">Новости</a></li>
+					<?php endif; ?>
+					<?php if( get_field('actions', 'option') ): ?>
+						<?php if( have_rows('actions') ): ?>
+							<li><a href="#actions">Нотариальные действия</a></li>
+						<?php endif; ?>
+					<?php endif; ?>
+					<?php if( get_field('tariffs', 'option') ): ?>
+						<?php if( get_field('tariffs_table') ): ?>
+							<li><a href="#tariffs">Тарифы</a></li>
+						<?php endif; ?>
+					<?php endif; ?>
+					<?php if( get_field('contacts', 'option') ): ?>
+						<li><a href="#contacts">Контакты</a></li>
+					<?php endif; ?>
+					<?php if( get_field('document', 'option') ): ?>
+						<?php if( get_field('document_wrap', 'option') ): ?>
+							<li><a href="#document">Отправить документы</a></li>
+						<?php endif; ?>
+					<?php endif; ?>
+					<?php if( get_field('registers', 'option') ): ?>
+						<?php if( have_rows('registers') ): ?>
+							<li><a href="#registers">Публичные реестры</a></li>
+						<?php endif; ?>
+					<?php endif; ?>
 				</ul>
 
 				<?php 
@@ -333,7 +359,7 @@
 								<span></span>
 							</button>
 
-								<?php echo $modal; ?>
+							<?php echo $modal; ?>
 
 					</div>
 				</div>
