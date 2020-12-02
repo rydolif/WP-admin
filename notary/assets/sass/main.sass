@@ -1533,6 +1533,9 @@
 
 .single
 
+	.btn
+		margin: 0 auto !important
+
 	input
 		margin-left: 0 !important
 
@@ -1574,11 +1577,11 @@
 				color: $accent
 				text-decoration: underline
 
-	input
-		display: none
+		input
+			display: none !important
 
-		&:checked + label::after
-			transform: rotate(45deg) scale(1)
+			&:checked + label::after
+				transform: rotate(45deg) scale(1)
 
 
 .caldera-grid .checkbox label, .caldera-grid .radio label
